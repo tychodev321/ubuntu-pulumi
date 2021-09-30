@@ -20,6 +20,7 @@ RUN microdnf update -y \
 RUN wget ${PULUMI_URL} \ 
     && tar -xzvf pulumi-${PULUMI_VERSION}-linux-x64.tar.gz \
     && rm pulumi-${PULUMI_VERSION}-linux-x64.tar.gz \
+    && ls -l \
     && mv pulumi /usr/bin/pulumi
 
 RUN pulumi version
