@@ -17,11 +17,11 @@ RUN microdnf update -y \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
 # Download and install Pulumi
-RUN wget ${PULUMI_URL} \ 
-    && tar -xzvf pulumi-${PULUMI_VERSION}-linux-x64.tar.gz \
+RUN wget ${PULUMI_URL} \
+	&& tar -xzvf pulumi-${PULUMI_VERSION}-linux-x64.tar.gz \
     && rm pulumi-${PULUMI_VERSION}-linux-x64.tar.gz \
-    && mv pulumi /usr/bin/pulumi
+	&& cp pulumi/* /usr/bin \
+	&& rm -rf pulumi
 
-ENV PATH "/usr/bin/pulumi/pulumi/bin:${PATH}"
 RUN pulumi version
 
