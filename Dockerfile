@@ -17,7 +17,6 @@ RUN microdnf update -y \
 
 # Download and install Pulumi
 RUN wget ${PULUMI_URL} \ 
-    && ls -ltr \
     && tar -xzvf pulumi-${PULUMI_VERSION}-linux-x64.tar.gz \
     && rm pulumi-${PULUMI_VERSION}-linux-x64.tar.gz \
     && mv pulumi /usr/bin/pulumi
