@@ -11,6 +11,7 @@ ENV PULUMI_URL=https://get.pulumi.com/releases/sdk/pulumi-${PULUMI_VERSION}-linu
 
 RUN microdnf update -y \
     && microdnf install -y tar \
+    && microdnf install -y gzip \
     && microdnf install -y wget \
     && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
