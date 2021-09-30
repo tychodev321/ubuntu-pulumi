@@ -22,6 +22,6 @@ RUN wget ${PULUMI_URL} \
     && rm pulumi-${PULUMI_VERSION}-linux-x64.tar.gz \
     && mv pulumi /usr/bin/pulumi
 
-ENV PATH "/usr/bin/pulumi/bin:${PATH}"
+ENV PATH "/usr/bin/pulumi/pulumi/bin:${PATH}"
 RUN pulumi version
 
