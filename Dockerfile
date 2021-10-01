@@ -25,6 +25,6 @@ RUN wget ${PULUMI_URL} \
 
 RUN pulumi version
 
-USER 1001
+# USER 1001
 
 CMD ["echo", "This is a 'Purpose Built Image', It is not meant to be ran directly"]
