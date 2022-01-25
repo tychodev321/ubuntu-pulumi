@@ -2,6 +2,3 @@ include:
   - project: "${ORG_NAME}/gitlab-coe/pipeline-templates"
     file: "/templates/Build-Image.gitlab-ci.yml"
     ref: main
-
-variables:
-  BUILD_IMAGE: "true"
