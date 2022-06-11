@@ -1,5 +1,5 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
-# FROM redhat/ubi8/ubi-minimal:8.4
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.0.0
+# FROM redhat/ubi9/ubi-minimal:9.0.0
 
 LABEL maintainer=""
 
