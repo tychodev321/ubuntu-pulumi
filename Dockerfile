@@ -3,20 +3,20 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal:9.0.0
 
 LABEL maintainer=""
 
-ENV PULUMI_VERSION=v3.13.2
+ENV PULUMI_VERSION=v3.33.2
 ENV PULUMI_URL=https://get.pulumi.com/releases/sdk/pulumi-${PULUMI_VERSION}-linux-x64.tar.gz
-ENV PYTHON_VERSION=3.9 \
+ENV PYTHON_VERSION=3 \
     PATH=$HOME/.local/bin/:$PATH \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
     PIP_NO_CACHE_DIR=off
 
-
 # MicroDNF is recommended over YUM for Building Container Images
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
 RUN microdnf update -y \
-    && microdnf install -y python39 \
+    && microdnf install -y python${PYTHON_VERSION} \
+    && microdnf install -y python${PYTHON_VERSION}-pip \
     && microdnf install -y tar \
     && microdnf install -y gzip \
     && microdnf install -y wget \
