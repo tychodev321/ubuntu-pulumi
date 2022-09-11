@@ -34,7 +34,7 @@ RUN microdnf update -y \
 RUN microdnf update -y \
     && microdnf install -y python${PYTHON_VERSION} \
     && microdnf install -y python${PYTHON_VERSION}-pip \
-    && microdnf install -y python${PYTHON_VERSION}-dev \
+    && microdnf install -y python${PYTHON_VERSION}-devel \
     && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
