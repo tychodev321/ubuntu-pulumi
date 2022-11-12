@@ -6,6 +6,9 @@ LABEL maintainer=""
 ENV PULUMI_VERSION=v3.34.1
 ENV PULUMI_URL=https://get.pulumi.com/releases/sdk/pulumi-${PULUMI_VERSION}-linux-x64.tar.gz
 
+ENV AWSCLI_VERSION=2.7.7
+ENV AWSCLI_URL=https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWSCLI_VERSION}.zip
+
 ENV PYTHON_VERSION=3 \
     PATH=$HOME/.local/bin/:$PATH \
     PYTHONUNBUFFERED=1 \
@@ -64,6 +67,14 @@ RUN wget ${PULUMI_URL} \
 	&& rm -rf pulumi
 
 RUN pulumi version
+
+# Download and install AWS CLI
+RUN curl ${AWSCLI_URL} -o "awscliv2.zip" \ 
+    && unzip awscliv2.zip \
+    && ./aws/install -i /usr/local -b /usr/local/bin -u \
+    && rm  -rf awscliv2.zip awscliv2
+
+RUN aws --version
 
 # USER 1001
 
