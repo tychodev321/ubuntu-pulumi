@@ -46,8 +46,7 @@ RUN pip3 install --upgrade pip && pip3 install poetry
 RUN python3 --version && pip3 --version
 
 # Install Node and NPM
-RUN microdnf update -y \
-    && INSTALL_PKGS="nodejs" \
+RUN INSTALL_PKGS="nodejs" \
     && microdnf module disable nodejs \
     && microdnf module enable nodejs:${NODEJS_VERSION} \
     && microdnf --nodocs --setopt=install_weak_deps=0 install $INSTALL_PKGS \
