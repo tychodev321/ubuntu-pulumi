@@ -30,6 +30,7 @@ RUN microdnf update -y \
     && microdnf install -y tar \
     && microdnf install -y gzip \
     && microdnf install -y wget \
+    && microdnf install -y unzip \
     && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
