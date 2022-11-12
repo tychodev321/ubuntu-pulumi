@@ -80,13 +80,13 @@ RUN curl -LO "${KUBECTL_URL}" \
     && mv ./kubectl /usr/bin/kubectl
 
 RUN echo "Pulumi Version - $(pulumi version)" \
-    && aws --version \
-    && kubectl version --client \
-    && node --version \ 
-    && npm --version \ 
-    && yarn --version \ 
-    && python3 --version \
-    && pip3 --version
+    && echo "AWS CLI Version - $(aws --version)" \
+    && echo "Kubectl Version - $(kubectl version --client)" \
+    && echo "NodeJS Version - $(node --version)" \ 
+    && echo "NPM Version - $(npm --version)" \ 
+    && echo "YARN Version - $(yarn --version)" \ 
+    && echo "Python Version - $(python3 --version)" \
+    && echo "PIP Version - $(pip3 --version)"
 
 # USER 1001
 
