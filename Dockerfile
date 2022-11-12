@@ -45,12 +45,17 @@ RUN microdnf update -y \
 RUN pip3 install --upgrade pip && pip3 install poetry
 RUN python3 --version && pip3 --version
 
-# Install Node, NPM, and Terraform CDK
+# Install Node and NPM
 RUN microdnf update -y \
-    && microdnf install -y nodejs-${NODEJS_VERSION} \
-    && microdnf install -y npm-${NPM_VERSION} \
+    && INSTALL_PKGS="nodejs" \
+    && microdnf module disable nodejs \
+    && microdnf module enable nodejs:${NODEJS_VERSION} \
+    && microdnf --nodocs --setopt=install_weak_deps=0 install $INSTALL_PKGS \
+    && microdnf install -y npm-${NPM_VERSION} \ 
+    && node -v | grep -qe "^v${NODEJS_VERSION}\." && echo "Found VERSION ${NODEJS_VERSION}" \
     && microdnf clean all \
-    && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
+    && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.* \
+    && rm -rf /mnt/rootfs/var/cache/* /mnt/rootfs/var/log/dnf* /mnt/rootfs/var/log/yum.*
 
 RUN npm install --global yarn@${YARN_VERSION} \
     && npm config set prefix /usr/local
