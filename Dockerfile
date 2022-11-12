@@ -9,6 +9,10 @@ ENV PULUMI_URL=https://get.pulumi.com/releases/sdk/pulumi-${PULUMI_VERSION}-linu
 ENV AWSCLI_VERSION=2.7.7
 ENV AWSCLI_URL=https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWSCLI_VERSION}.zip
 
+ENV KUBECTL_VERSION=v1.24.1
+ENV KUBECTL_URL=https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl
+ENV KUBECTL_CHECKSUM_URL=https://dl.k8s.io/${KUBECTL_VERSION}/bin/linux/amd64/kubectl.sha256
+
 ENV PYTHON_VERSION=3 \
     PATH=$HOME/.local/bin/:$PATH \
     PYTHONUNBUFFERED=1 \
@@ -44,7 +48,6 @@ RUN microdnf update -y \
 
 # Make sure to upgrade pip3
 RUN pip3 install --upgrade pip && pip3 install poetry
-RUN python3 --version && pip3 --version
 
 # Install Node and NPM
 RUN microdnf update -y \
@@ -55,10 +58,6 @@ RUN microdnf update -y \
 
 RUN npm install --global yarn@${YARN_VERSION} \
     && npm config set prefix /usr/local
-    
-RUN node --version \ 
-    && npm --version \ 
-    && yarn --version
 
 # Download and install Pulumi
 RUN wget ${PULUMI_URL} \
@@ -67,15 +66,27 @@ RUN wget ${PULUMI_URL} \
 	&& cp pulumi/* /usr/bin \
 	&& rm -rf pulumi
 
-RUN pulumi version
-
 # Download and install AWS CLI
 RUN curl ${AWSCLI_URL} -o "awscliv2.zip" \ 
     && unzip awscliv2.zip \
     && ./aws/install -i /usr/local -b /usr/local/bin -u \
     && rm  -rf awscliv2.zip awscliv2
 
-RUN aws --version
+# Download and install Kubectl
+RUN curl -LO "${KUBECTL_URL}" \
+    && curl -LO "${KUBECTL_CHECKSUM_URL}" \
+    && echo "$(<kubectl.sha256) kubectl" | sha256sum --check \
+    && chmod +x kubectl \
+    && mv ./kubectl /usr/bin/kubectl
+
+RUN pulumi version \
+    && aws --version \
+    && kubectl version --client \
+    && node --version \ 
+    && npm --version \ 
+    && yarn --version \ 
+    && python3 --version \
+    && pip3 --version
 
 # USER 1001
 
