@@ -79,7 +79,7 @@ RUN curl -LO "${KUBECTL_URL}" \
     && chmod +x kubectl \
     && mv ./kubectl /usr/bin/kubectl
 
-RUN pulumi version \
+RUN echo "Pulumi Version - $(pulumi version)" \
     && aws --version \
     && kubectl version --client \
     && node --version \ 
