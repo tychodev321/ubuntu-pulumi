@@ -47,7 +47,7 @@ RUN python3 --version && pip3 --version
 
 # Install Node and NPM
 RUN microdnf update -y \
-    && RUN echo -e "[nodejs]\nname=nodejs\nstream=${NODEJS_VERSION}\nprofiles=\nstate=enabled\n" > /etc/dnf/modules.d/nodejs.module \
+    && echo -e "[nodejs]\nname=nodejs\nstream=${NODEJS_VERSION}\nprofiles=\nstate=enabled\n" > /etc/dnf/modules.d/nodejs.module \
     && microdnf install nodejs \
     && microdnf install -y npm-${NPM_VERSION} \ 
     && microdnf clean all \
