@@ -47,14 +47,11 @@ RUN python3 --version && pip3 --version
 
 # Install Node and NPM
 RUN microdnf update -y \
-    && INSTALL_PKGS="nodejs" \
-    && microdnf module enable nodejs:${NODEJS_VERSION} \
-    && microdnf --nodocs --setopt=install_weak_deps=0 install $INSTALL_PKGS \
+    && RUN echo -e "[nodejs]\nname=nodejs\nstream=${NODEJS_VERSION}\nprofiles=\nstate=enabled\n" > /etc/dnf/modules.d/nodejs.module \
+    && microdnf install nodejs \
     && microdnf install -y npm-${NPM_VERSION} \ 
-    && node -v | grep -qe "^v${NODEJS_VERSION}\." && echo "Found VERSION ${NODEJS_VERSION}" \
     && microdnf clean all \
-    && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.* \
-    && rm -rf /mnt/rootfs/var/cache/* /mnt/rootfs/var/log/dnf* /mnt/rootfs/var/log/yum.*
+    && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.* 
 
 RUN npm install --global yarn@${YARN_VERSION} \
     && npm config set prefix /usr/local
