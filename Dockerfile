@@ -90,7 +90,6 @@ RUN curl -LO "${KUBECTL_URL}" \
 
 RUN echo "pulumi version - $(pulumi version)" \
     && echo "aws-cli version - $(aws --version)" \
-    && echo "kubectl version - $(kubectl version --client)" \
     && echo "nodejs version - $(node --version)" \ 
     && echo "npm version - $(npm --version)" \ 
     && echo "yarn version - $(yarn --version)" \ 
@@ -101,6 +100,7 @@ RUN echo "pulumi version - $(pulumi version)" \
     && echo "tar version: $(tar --version | head -n 1)" \
     && echo "gzip version: $(gzip --version | head -n 1)" \
     && echo "git version: $(git --version)" \
+    && echo "kubectl version - $(kubectl version --client)" \
     && microdnf repolist
 
 USER 1001
