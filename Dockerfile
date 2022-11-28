@@ -88,19 +88,19 @@ RUN curl -LO "${KUBECTL_URL}" \
     && chmod +x kubectl \
     && mv ./kubectl /usr/bin/kubectl
 
-RUN echo "pulumi version - $(pulumi version)" \
-    && echo "aws-cli version - $(aws --version)" \
-    && echo "nodejs version - $(node --version)" \ 
-    && echo "npm version - $(npm --version)" \ 
-    && echo "yarn version - $(yarn --version)" \ 
-    && echo "python version - $(python --version)" \
-    && echo "pip version - $(python -m pip --version)" \
+RUN echo "pulumi version: $(pulumi version)" \
+    && echo "aws-cli version: $(aws --version)" \
+    && echo "nodejs version: $(node --version)" \ 
+    && echo "npm version: $(npm --version)" \ 
+    && echo "yarn version: $(yarn --version)" \ 
+    && echo "python version: $(python --version)" \
+    && echo "pip version: $(python -m pip --version)" \
     && echo "wget version: $(wget --version | head -n 1)" \
     && echo "unzip version: $(unzip -v | head -n 1)" \
     && echo "tar version: $(tar --version | head -n 1)" \
     && echo "gzip version: $(gzip --version | head -n 1)" \
     && echo "git version: $(git --version)" \
-    && echo "kubectl version - $(kubectl version --client)" \
+    && echo "kubectl version: $(kubectl version --client)" \
     && microdnf repolist
 
 USER 1001
