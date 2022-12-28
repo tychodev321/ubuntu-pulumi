@@ -95,6 +95,7 @@ RUN echo "pulumi version: $(pulumi version)" \
     && echo "yarn version: $(yarn --version)" \ 
     && echo "python version: $(python --version)" \
     && echo "pip version: $(python -m pip --version)" \
+    && echo "poetry about: $(poetry about)" \
     && echo "wget version: $(wget --version | head -n 1)" \
     && echo "unzip version: $(unzip -v | head -n 1)" \
     && echo "tar version: $(tar --version | head -n 1)" \
@@ -103,6 +104,6 @@ RUN echo "pulumi version: $(pulumi version)" \
     && echo "kubectl version: $(kubectl version --client)" \
     && microdnf repolist
 
-USER 1001
+# USER 1001
 
 CMD ["echo", "This is a 'Purpose Built Image', It is not meant to be ran directly"]
