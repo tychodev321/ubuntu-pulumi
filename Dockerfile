@@ -3,7 +3,7 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal:9.0.0
 
 LABEL maintainer=""
 
-ENV PULUMI_VERSION=3.48.0
+ENV PULUMI_VERSION=3.53.1
 ENV PULUMI_URL=https://get.pulumi.com/releases/sdk/pulumi-v${PULUMI_VERSION}-linux-x64.tar.gz
 
 ENV AWSCLI_VERSION=2.9.1
