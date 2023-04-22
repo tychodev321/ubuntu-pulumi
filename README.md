@@ -1,1 +1,1 @@
-# ubi-pulumi
+# ubuntu-pulumi
