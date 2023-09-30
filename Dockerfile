@@ -1,5 +1,5 @@
 # https://hub.docker.com/_/ubuntu
-FROM ubuntu:22.10
+FROM ubuntu:22.04
 
 LABEL maintainer=""
 
