@@ -21,7 +21,7 @@ ENV PYTHON_VERSION=3.10.10 \
     POETRY_VERSION=1.2.2 \
     PULUMI_EXPERIMENTAL=true
 
-ENV NODEJS_VERSION=20.8.0 \
+ENV NODEJS_VERSION=18.0.0 \
     NPM_VERSION=10.1.0 \
     YARN_VERSION=1.22.19 \
     PATH=$HOME/.local/bin/:$PATH \
@@ -59,9 +59,8 @@ RUN python -m pip install --user pipx \
 
 # Install Node and NPM
 RUN apt update -y && apt upgrade -y \
-    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - \
     && apt install -y nodejs \
-    && apt install -y npm \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
