@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 
 LABEL maintainer=""
 
-ENV PULUMI_VERSION=3.86.0
+ENV PULUMI_VERSION=3.100.0
 ENV PULUMI_URL=https://get.pulumi.com/releases/sdk/pulumi-v${PULUMI_VERSION}-linux-x64.tar.gz
 
 ENV AWSCLI_VERSION=2.9.1
